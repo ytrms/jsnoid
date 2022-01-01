@@ -1,28 +1,60 @@
 {"frames": [
 
 {
-	"filename": "ball.png",
-	"frame": {"x":0,"y":0,"w":20,"h":20},
+	"filename": "ball-2x.png",
+	"frame": {"x":0,"y":0,"w":10,"h":8},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":20},
-	"sourceSize": {"w":20,"h":20}
+	"spriteSourceSize": {"x":0,"y":0,"w":10,"h":8},
+	"sourceSize": {"w":10,"h":8}
 },
 {
-	"filename": "brick.png",
-	"frame": {"x":20,"y":0,"w":64,"h":32},
+	"filename": "ball.png",
+	"frame": {"x":10,"y":0,"w":5,"h":4},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":32},
-	"sourceSize": {"w":64,"h":32}
+	"spriteSourceSize": {"x":0,"y":0,"w":5,"h":4},
+	"sourceSize": {"w":5,"h":4}
+},
+{
+	"filename": "brick-yellow-2x.png",
+	"frame": {"x":15,"y":0,"w":32,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":16},
+	"sourceSize": {"w":32,"h":16}
+},
+{
+	"filename": "brick-yellow.png",
+	"frame": {"x":47,"y":0,"w":16,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
+	"sourceSize": {"w":16,"h":8}
+},
+{
+	"filename": "paddle-2x.png",
+	"frame": {"x":63,"y":0,"w":64,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":16},
+	"sourceSize": {"w":64,"h":16}
+},
+{
+	"filename": "paddle.png",
+	"frame": {"x":127,"y":0,"w":32,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":8},
+	"sourceSize": {"w":32,"h":8}
 }],
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "sprites.png",
 	"format": "RGBA8888",
-	"size": {"w":84,"h":32},
+	"size": {"w":159,"h":16},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:7303c0ea4972494110956ca1065a85c3:a7c035eb8013fb6f535ba534acfbad4b:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:79229906a6320b4ed48fc4666ed58745:3938e9f804e81934674bb2716fa50067:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

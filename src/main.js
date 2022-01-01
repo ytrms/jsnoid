@@ -2,8 +2,8 @@ import Phaser from 'phaser'
 import Game from './scenes/Game'
 
 const config = {
-  width: 504,
-  height: 672,
+  width: 448,
+  height: 512,
   type: Phaser.AUTO,
   physics: {
     default: 'arcade',

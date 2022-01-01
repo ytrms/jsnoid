@@ -12,9 +12,9 @@ export default class Game extends Phaser.Scene {
 
     this.bricks = this.physics.add.staticGroup({
       key: 'assets',
-      frame: ['brick.png', 'brick.png', 'brick.png', 'brick.png', 'brick.png'],
-      frameQuantity: 7,
-      gridAlign: { width: 7, height: 5, cellWidth: 64, cellHeight: 32, x: 60, y: 50 }
+      frame: ['brick-yellow-2x.png', 'brick-yellow-2x.png', 'brick-yellow-2x.png', 'brick-yellow-2x.png', 'brick-yellow-2x.png'],
+      frameQuantity: 11,
+      gridAlign: { width: 11, height: 5, cellWidth: 32, cellHeight: 16, x: 64, y: 50 }
     })
 
     this.states = {
@@ -25,12 +25,10 @@ export default class Game extends Phaser.Scene {
 
     this.gameState = this.states.WAITING
 
-    // create paddle and give physics
-    this.paddle = this.add.rectangle(this.cameras.main.centerX, 630, 100, 20, 0xffffff, 1)
-    this.physics.add.existing(this.paddle, true)
+    this.paddle = this.physics.add.staticImage(this.cameras.main.centerX, 480, 'assets', 'paddle-2x.png')
 
     // create ball and give physics
-    this.ball = this.physics.add.image(this.paddle.x, this.paddle.y - 20, 'assets', 'ball.png')
+    this.ball = this.physics.add.image(this.paddle.x, this.paddle.y - 30, 'assets', 'ball-2x.png')
     // this.ball = this.add.circle(this.paddle.x, this.paddle.y - 20, 10, 0xffffff, 1)
     this.physics.add.existing(this.ball)
     this.ball.setBounce(1, 1)
