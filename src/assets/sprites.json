@@ -1,0 +1,28 @@
+{"frames": [
+
+{
+	"filename": "ball.png",
+	"frame": {"x":0,"y":0,"w":20,"h":20},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":20,"h":20},
+	"sourceSize": {"w":20,"h":20}
+},
+{
+	"filename": "brick.png",
+	"frame": {"x":20,"y":0,"w":64,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":32},
+	"sourceSize": {"w":64,"h":32}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "sprites.png",
+	"format": "RGBA8888",
+	"size": {"w":84,"h":32},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:7303c0ea4972494110956ca1065a85c3:a7c035eb8013fb6f535ba534acfbad4b:1eabdf11f75e3a4fe3147baf7b5be24b$"
+}
+}
