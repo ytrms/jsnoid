@@ -41,8 +41,16 @@
 	"sourceSize": {"w":15,"h":5}
 },
 {
+	"filename": "lifeIndicatorShadow.png",
+	"frame": {"x":76,"y":0,"w":15,"h":5},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":5},
+	"sourceSize": {"w":15,"h":5}
+},
+{
 	"filename": "paddle.png",
-	"frame": {"x":76,"y":0,"w":32,"h":8},
+	"frame": {"x":91,"y":0,"w":32,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":8},
@@ -63,6 +71,6 @@
 	"format": "RGBA8888",
 	"size": {"w":224,"h":248},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:7c59286bb2febcf4455cc8808338c21d:e7055988b8e54446c0ce21583b8bbad9:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:899bbe3c1ab845c70f5641a9c31d3570:45d8730b0d604d057ea3dbfd92ed211e:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

@@ -22,8 +22,8 @@ export default class Game extends Phaser.Scene {
 
   create() {
     // add audio files
-    const brickHitSound = this.sound.add("brickHitSound", { loop: false })
-    const paddleHitSound = this.sound.add("paddleHitSound", { loop: false })
+    this.brickHitSound = this.sound.add("brickHitSound", { loop: false })
+    this.paddleHitSound = this.sound.add("paddleHitSound", { loop: false })
     this.ballLostSound = this.sound.add("ballLostSound", { loop: false })
     this.winSound = this.sound.add("winSound", { loop: false })
     this.loseSound = this.sound.add("loseSound", { loop: false })
@@ -31,16 +31,21 @@ export default class Game extends Phaser.Scene {
     // set background
     this.bgtile = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, this.cameras.main.width, this.cameras.main.height, 'assets', 'bg-tile.png')
 
+    // create shadows
+    this.paddleShadow = this.add.image(this.cameras.main.centerX + 4, 244, 'assets', 'paddle.png').setTintFill(0x000000)
+    this.ballShadow = this.add.image(this.cameras.main.centerX + 4, 214, 'assets', 'ball.png').setTintFill(0x000000)
+    this.leftBorderShadow = this.add.rectangle(8, 17, 8, this.cameras.main.height - 17, 0x000000, 0.25).setOrigin(0)
+    this.topBorderShadow = this.add.rectangle(16, 17, this.cameras.main.width - 17, 8, 0x000000, 0.25).setOrigin(0)
+
     // add black bar at the top for scoring
     this.blackBar = this.add.rectangle(this.cameras.main.width / 2, 0, this.cameras.main.width, 21, 0x000000, 1)
 
     // add borders
-    console.log('black bar height', this.blackBar.height);
     let topBorder = this.physics.add.image(this.cameras.main.centerX, this.blackBar.height - 8, 'assets', 'top-border.png').setImmovable(true)
     let leftBorder = this.physics.add.image(4, this.cameras.main.centerY + 8, 'assets', 'left-border.png').setImmovable(true)
     let rightBorder = this.physics.add.image(this.cameras.main.width - 4, this.cameras.main.centerY + 8, 'assets', 'left-border.png').setFlipX(true).setImmovable(true)
-    console.log('topBorder X', topBorder.y);
 
+    // add bricks
     this.yellowBricks = this.physics.add.staticGroup({
       key: 'assets',
       frame: ['brick-yellow.png', 'brick-yellow.png', 'brick-yellow.png', 'brick-yellow.png', 'brick-yellow.png'],
@@ -48,15 +53,25 @@ export default class Game extends Phaser.Scene {
       gridAlign: { width: 11, height: 5, cellWidth: 16, cellHeight: 8, x: 32, y: 50 }
     })
 
+    // add lives
     this.extraShips = 3
     this.updateExtraShips = function (counter) {
-      console.log('extra ships', this.extraShips);
       if (this.shipGroup) {
         this.shipGroup.destroy(true)
+        this.shipGroupShadow.destroy(true)
         if (counter === 0) {
           return
         }
       }
+
+      /** @type Phaser.GameObjects.Group */
+      this.shipGroupShadow = this.add.group({
+        key: 'assets',
+        frame: 'lifeIndicatorShadow.png',
+        quantity: counter,
+        gridAlign: { height: 1, cellWidth: 16, cellHeight: 5, x: 18, y: 251 }
+      })
+
       /** @type Phaser.GameObjects.Group */
       this.shipGroup = this.add.group({
         key: 'assets',
@@ -64,8 +79,8 @@ export default class Game extends Phaser.Scene {
         quantity: counter,
         gridAlign: { height: 1, cellWidth: 16, cellHeight: 5, x: 17, y: 248 }
       })
-    }
 
+    }
     this.updateExtraShips(this.extraShips)
 
     this.states = {
@@ -97,7 +112,7 @@ export default class Game extends Phaser.Scene {
      */
     this.hitYellowBrick = function (ball, brick) {
       brick.disableBody(true, true)
-      brickHitSound.play()
+      this.brickHitSound.play()
       this.score += 120
       this.scoreBoard.setText(`SCORE:${this.score}`)
 
@@ -119,15 +134,15 @@ export default class Game extends Phaser.Scene {
       }
       if (this.gameState !== this.states.WAITING) {
 
-        paddleHitSound.play()
+        this.paddleHitSound.play()
       }
     }
 
     this.physics.add.collider(this.ball, this.paddle, this.hitPaddle, null, this)
     this.physics.add.collider(this.ball, this.yellowBricks, this.hitYellowBrick, null, this)
-    this.physics.add.collider(this.ball, topBorder)
-    this.physics.add.collider(this.ball, leftBorder)
-    this.physics.add.collider(this.ball, rightBorder)
+    this.physics.add.collider(this.ball, topBorder, () => this.paddleHitSound.play(), null, this)
+    this.physics.add.collider(this.ball, leftBorder, () => this.paddleHitSound.play(), null, this)
+    this.physics.add.collider(this.ball, rightBorder, () => this.paddleHitSound.play(), null, this)
 
     this.score = 0
     this.scoreBoard = this.add.bitmapText(2, 2, 'ibm_vga', "PRESS UP TO LAUNCH", 8)
@@ -136,7 +151,7 @@ export default class Game extends Phaser.Scene {
 
     // handle pause
     this.input.keyboard.on('keydown-P', () => {
-      if (this.gameState !== this.states.PAUSED) {
+      if (this.gameState === this.states.PLAYING) {
         this.previousGameState = this.gameState
 
         this.previousBallVelocityX = this.ball.body.velocity.x
@@ -163,11 +178,13 @@ export default class Game extends Phaser.Scene {
       if (this.cursors.left.isDown) {
         if (this.paddle.x - this.paddle.width / 2 > 9) {
           this.paddle.x -= 3
+          this.paddleShadow.x = this.paddle.x + 4
           this.paddle.body.updateFromGameObject()
         }
       } else if (this.cursors.right.isDown) {
         if (this.paddle.x + this.paddle.width / 2 < this.cameras.main.width - 9) {
           this.paddle.x += 3
+          this.paddleShadow.x = this.paddle.x + 4
           this.paddle.body.updateFromGameObject()
         }
       }
@@ -197,5 +214,9 @@ export default class Game extends Phaser.Scene {
       this.updateExtraShips(this.extraShips)
       this.ballLostSound.play()
     }
+
+    // have shadow follow the ball
+    this.ballShadow.x = this.ball.x + 4
+    this.ballShadow.y = this.ball.y + 4
   }
 }

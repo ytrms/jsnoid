@@ -1,6 +1,4 @@
 import Phaser from 'phaser'
-import assetspng from './../assets/sprites.png'
-import assetsjson from './../assets/sprites.json'
 import fontpng from './../assets/IBM_VGA_9x8_0.png'
 import fontxml from './../assets/IBM_VGA_9x8.xml'
 import winSound from './../assets/win.wav'
@@ -30,6 +28,8 @@ export default class GameOver extends Phaser.Scene {
     this.add.bitmapText(this.cameras.main.width / 2, this.pointsText.y + 24, 'ibm_vga', `PRESS SPACE TO RESTART`, 8).setOrigin(0.5)
 
     this.status == "WON" ? this.winSound.play() : this.loseSound.play()
+
+    this.add.bitmapText(1, this.cameras.main.height - 8, 'ibm_vga', "Rose Software (c) 2022", 8).setOrigin(0)
 
     this.input.keyboard.on('keydown-SPACE', () => {
       this.scene.start('Game')
