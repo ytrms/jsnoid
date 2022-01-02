@@ -3,14 +3,25 @@ import assetspng from './../assets/sprites.png'
 import assetsjson from './../assets/sprites.json'
 import fontpng from './../assets/IBM_VGA_9x8_0.png'
 import fontxml from './../assets/IBM_VGA_9x8.xml'
+import brickHitSound from './../assets/brick-hit.wav'
+import paddleHitSound from './../assets/paddleHit.wav'
+import ballLostSound from './../assets/ballLost.wav'
 
 export default class Game extends Phaser.Scene {
   preload() {
     this.load.atlas('assets', assetspng, assetsjson)
     this.load.bitmapFont('ibm_vga', fontpng, fontxml)
+    this.load.audio("brickHitSound", brickHitSound)
+    this.load.audio("paddleHitSound", paddleHitSound)
+    this.load.audio("ballLostSound", ballLostSound)
   }
 
   create() {
+    // add audio files
+    const brickHitSound = this.sound.add("brickHitSound", { loop: false })
+    const paddleHitSound = this.sound.add("paddleHitSound", { loop: false })
+    this.ballLostSound = this.sound.add("ballLostSound", { loop: false })
+
     // set background
     this.bgtile = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, this.cameras.main.width, this.cameras.main.height, 'assets', 'bg-tile.png')
 
@@ -61,6 +72,7 @@ export default class Game extends Phaser.Scene {
 
     this.hitBrick = function (ball, brick) {
       brick.disableBody(true, true)
+      brickHitSound.play()
 
       if (this.bricks.countActive() === 0) {
         this.resetLevel()
@@ -77,6 +89,10 @@ export default class Game extends Phaser.Scene {
         // The ball hit the right side of the paddle
         delta = ball.x - paddle.x
         ball.setVelocityX(8 * delta)
+      }
+      if (this.gameState !== this.states.WAITING) {
+
+        paddleHitSound.play()
       }
     }
 
@@ -146,6 +162,7 @@ export default class Game extends Phaser.Scene {
 
     if (this.ball.y > this.paddle.y) {
       this.gameState = this.states.WAITING
+      this.ballLostSound.play()
     }
   }
 }
