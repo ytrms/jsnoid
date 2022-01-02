@@ -1,5 +1,6 @@
 import Phaser from 'phaser'
 import Game from './scenes/Game'
+import GameOver from './scenes/GameOver'
 
 const config = {
   pixelArt: true,
@@ -13,11 +14,14 @@ const config = {
       gravity: { y: 0 },
       debug: false
     }
-  }
+  },
+  title: 'JSnoid',
+  url: 'https://github.com/ytrms/jsnoid',
 }
 
 const game = new Phaser.Game(config)
 
-game.scene.add('game', Game)
+game.scene.add('Game', Game)
+game.scene.add('GameOver', GameOver)
 
-game.scene.start('game')
+game.scene.start('Game')

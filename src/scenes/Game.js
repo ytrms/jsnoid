@@ -6,6 +6,8 @@ import fontxml from './../assets/IBM_VGA_9x8.xml'
 import brickHitSound from './../assets/brick-hit.wav'
 import paddleHitSound from './../assets/paddleHit.wav'
 import ballLostSound from './../assets/ballLost.wav'
+import winSound from './../assets/win.wav'
+import loseSound from './../assets/lose.wav'
 
 export default class Game extends Phaser.Scene {
   preload() {
@@ -14,6 +16,8 @@ export default class Game extends Phaser.Scene {
     this.load.audio("brickHitSound", brickHitSound)
     this.load.audio("paddleHitSound", paddleHitSound)
     this.load.audio("ballLostSound", ballLostSound)
+    this.load.audio("winSound", winSound)
+    this.load.audio("loseSound", loseSound)
   }
 
   create() {
@@ -21,6 +25,8 @@ export default class Game extends Phaser.Scene {
     const brickHitSound = this.sound.add("brickHitSound", { loop: false })
     const paddleHitSound = this.sound.add("paddleHitSound", { loop: false })
     this.ballLostSound = this.sound.add("ballLostSound", { loop: false })
+    this.winSound = this.sound.add("winSound", { loop: false })
+    this.loseSound = this.sound.add("loseSound", { loop: false })
 
     // set background
     this.bgtile = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, this.cameras.main.width, this.cameras.main.height, 'assets', 'bg-tile.png')
@@ -35,14 +41,32 @@ export default class Game extends Phaser.Scene {
     let rightBorder = this.physics.add.image(this.cameras.main.width - 4, this.cameras.main.centerY + 8, 'assets', 'left-border.png').setFlipX(true).setImmovable(true)
     console.log('topBorder X', topBorder.y);
 
-    this.physics.world.setBoundsCollision(true, true, true, false)
-
-    this.bricks = this.physics.add.staticGroup({
+    this.yellowBricks = this.physics.add.staticGroup({
       key: 'assets',
       frame: ['brick-yellow.png', 'brick-yellow.png', 'brick-yellow.png', 'brick-yellow.png', 'brick-yellow.png'],
       frameQuantity: 11,
       gridAlign: { width: 11, height: 5, cellWidth: 16, cellHeight: 8, x: 32, y: 50 }
     })
+
+    this.extraShips = 3
+    this.updateExtraShips = function (counter) {
+      console.log('extra ships', this.extraShips);
+      if (this.shipGroup) {
+        this.shipGroup.destroy(true)
+        if (counter === 0) {
+          return
+        }
+      }
+      /** @type Phaser.GameObjects.Group */
+      this.shipGroup = this.add.group({
+        key: 'assets',
+        frame: "lifeIndicator.png",
+        quantity: counter,
+        gridAlign: { height: 1, cellWidth: 16, cellHeight: 5, x: 17, y: 248 }
+      })
+    }
+
+    this.updateExtraShips(this.extraShips)
 
     this.states = {
       WAITING: "waiting",
@@ -52,30 +76,33 @@ export default class Game extends Phaser.Scene {
 
     this.gameState = this.states.WAITING
 
+    // create paddle
     this.paddle = this.physics.add.staticImage(this.cameras.main.centerX, 240, 'assets', 'paddle.png')
 
-    // create ball and give physics
-    this.ball = this.physics.add.image(this.paddle.x, this.paddle.y - 30, 'assets', 'ball.png')
-    // this.ball = this.add.circle(this.paddle.x, this.paddle.y - 20, 10, 0xffffff, 1)
-    //this.physics.add.existing(this.ball)
-    this.ball.setBounce(1, 1)
-    this.ball.setCollideWorldBounds(true, 1, 1, true)
+    // create ball 
+    this.ball = this.physics.add.image(this.paddle.x, this.paddle.y - 30, 'assets', 'ball.png').setBounce(1)
 
     this.resetLevel = function () {
       this.gameState = this.states.WAITING
-      this.ballsUsed = 0
-      this.scoreBoard.setText(`Press UP to start.`)
-      this.bricks.children.each(brick => {
+      this.score = 0
+      this.scoreBoard.setText(`PRESS UP TO LAUNCH.`)
+      this.yellowBricks.children.each(brick => {
         brick.enableBody(false, 0, 0, true, true)
       })
     }
 
-    this.hitBrick = function (ball, brick) {
+    /**
+     * @param {Phaser.Physics.Arcade.Image} ball 
+     * @param {Phaser.Physics.Arcade.Image} brick 
+     */
+    this.hitYellowBrick = function (ball, brick) {
       brick.disableBody(true, true)
       brickHitSound.play()
+      this.score += 120
+      this.scoreBoard.setText(`SCORE:${this.score}`)
 
-      if (this.bricks.countActive() === 0) {
-        this.resetLevel()
+      if (this.yellowBricks.countActive() === 0) {
+        this.scene.start('GameOver', { score: this.score, status: "WON" })
       }
     }
 
@@ -97,13 +124,13 @@ export default class Game extends Phaser.Scene {
     }
 
     this.physics.add.collider(this.ball, this.paddle, this.hitPaddle, null, this)
-    this.physics.add.collider(this.ball, this.bricks, this.hitBrick, null, this)
+    this.physics.add.collider(this.ball, this.yellowBricks, this.hitYellowBrick, null, this)
     this.physics.add.collider(this.ball, topBorder)
     this.physics.add.collider(this.ball, leftBorder)
     this.physics.add.collider(this.ball, rightBorder)
 
-    this.ballsUsed = 0
-    this.scoreBoard = this.add.bitmapText(2, 2, 'ibm_vga', "PRESS UP TO START", 8)
+    this.score = 0
+    this.scoreBoard = this.add.bitmapText(2, 2, 'ibm_vga', "PRESS UP TO LAUNCH", 8)
 
     this.cursors = this.input.keyboard.createCursorKeys()
 
@@ -145,11 +172,10 @@ export default class Game extends Phaser.Scene {
         }
       }
       // release ball when player presses up
-      if (this.gameState == this.states.WAITING && this.cursors.up.isDown) {
+      if (this.gameState == this.states.WAITING && this.cursors.up.isDown && this.ball.getData('isReady')) {
         this.gameState = this.states.PLAYING
         this.ball.setVelocity(60, -200)
-        this.ballsUsed++
-        this.scoreBoard.setText(`Balls used: ${this.ballsUsed}`)
+        this.ball.setData({ isReady: false })
       }
 
     }
@@ -158,10 +184,17 @@ export default class Game extends Phaser.Scene {
       this.ball.x = this.paddle.x
       this.ball.y = this.paddle.y - this.ball.height * 2
       this.ball.setVelocity(0, 0)
+      this.ball.setData({ isReady: true })
     }
 
     if (this.ball.y > this.paddle.y) {
       this.gameState = this.states.WAITING
+      this.extraShips--
+      if (this.extraShips < 0) {
+        this.scene.start('GameOver', { score: this.score, status: 'LOST' })
+        return
+      }
+      this.updateExtraShips(this.extraShips)
       this.ballLostSound.play()
     }
   }
