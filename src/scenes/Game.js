@@ -22,35 +22,91 @@ export default class Game extends Phaser.Scene {
 
   create() {
     // add audio files
-    this.brickHitSound = this.sound.add("brickHitSound", { loop: false })
-    this.paddleHitSound = this.sound.add("paddleHitSound", { loop: false })
-    this.ballLostSound = this.sound.add("ballLostSound", { loop: false })
-    this.winSound = this.sound.add("winSound", { loop: false })
-    this.loseSound = this.sound.add("loseSound", { loop: false })
+    this.brickHitSound = this.sound.add("brickHitSound", {loop: false})
+    this.paddleHitSound = this.sound.add("paddleHitSound", {loop: false})
+    this.ballLostSound = this.sound.add("ballLostSound", {loop: false})
+    this.winSound = this.sound.add("winSound", {loop: false})
+    this.loseSound = this.sound.add("loseSound", {loop: false})
 
     // set background
-    this.bgtile = this.add.tileSprite(this.cameras.main.centerX, this.cameras.main.centerY, this.cameras.main.width, this.cameras.main.height, 'assets', 'bg-tile.png')
+    this.bgtile = this.add.tileSprite(
+      this.cameras.main.centerX,
+      this.cameras.main.centerY,
+      this.cameras.main.width,
+      this.cameras.main.height,
+      'assets',
+      'bg-tile.png')
 
     // create shadows
-    this.paddleShadow = this.add.image(this.cameras.main.centerX + 4, 244, 'assets', 'paddle.png').setTintFill(0x000000)
-    this.ballShadow = this.add.image(this.cameras.main.centerX + 4, 214, 'assets', 'ball.png').setTintFill(0x000000)
-    this.leftBorderShadow = this.add.rectangle(8, 17, 8, this.cameras.main.height - 17, 0x000000, 0.25).setOrigin(0)
-    this.topBorderShadow = this.add.rectangle(16, 17, this.cameras.main.width - 17, 8, 0x000000, 0.25).setOrigin(0)
+    this.paddleShadow = this.add.image(
+      this.cameras.main.centerX + 4,
+      244,
+      'assets',
+      'paddle.png')
+      .setTintFill(0x000000)
+
+    this.ballShadow = this.add.image(
+      this.cameras.main.centerX + 4,
+      214,
+      'assets',
+      'ball.png')
+      .setTintFill(0x000000)
+
+    this.leftBorderShadow = this.add.rectangle(
+      8,
+      17,
+      8,
+      this.cameras.main.height - 17,
+      0x000000,
+      0.25)
+      .setOrigin(0)
+
+    this.topBorderShadow = this.add.rectangle(
+      16,
+      17,
+      this.cameras.main.width - 17,
+      8,
+      0x000000,
+      0.25)
+      .setOrigin(0)
 
     // add black bar at the top for scoring
-    this.blackBar = this.add.rectangle(this.cameras.main.width / 2, 0, this.cameras.main.width, 21, 0x000000, 1)
+    this.blackBar = this.add.rectangle(
+      this.cameras.main.width / 2,
+      0, this.cameras.main.width,
+      21,
+      0x000000,
+      1)
 
     // add borders
-    let topBorder = this.physics.add.image(this.cameras.main.centerX, this.blackBar.height - 8, 'assets', 'top-border.png').setImmovable(true)
-    let leftBorder = this.physics.add.image(4, this.cameras.main.centerY + 8, 'assets', 'left-border.png').setImmovable(true)
-    let rightBorder = this.physics.add.image(this.cameras.main.width - 4, this.cameras.main.centerY + 8, 'assets', 'left-border.png').setFlipX(true).setImmovable(true)
+    let topBorder = this.physics.add.image(
+      this.cameras.main.centerX,
+      this.blackBar.height - 8,
+      'assets',
+      'top-border.png')
+      .setImmovable(true)
+
+    let leftBorder = this.physics.add.image(
+      4,
+      this.cameras.main.centerY + 8,
+      'assets',
+      'left-border.png')
+      .setImmovable(true)
+
+    let rightBorder = this.physics.add.image(
+      this.cameras.main.width - 4,
+      this.cameras.main.centerY + 8,
+      'assets',
+      'left-border.png')
+      .setFlipX(true)
+      .setImmovable(true)
 
     // add bricks
     this.yellowBricks = this.physics.add.staticGroup({
       key: 'assets',
       frame: ['brick-yellow.png', 'brick-yellow.png', 'brick-yellow.png', 'brick-yellow.png', 'brick-yellow.png'],
       frameQuantity: 11,
-      gridAlign: { width: 11, height: 5, cellWidth: 16, cellHeight: 8, x: 32, y: 50 }
+      gridAlign: {width: 11, height: 5, cellWidth: 16, cellHeight: 8, x: 32, y: 50}
     })
 
     // add lives
@@ -69,7 +125,7 @@ export default class Game extends Phaser.Scene {
         key: 'assets',
         frame: 'lifeIndicatorShadow.png',
         quantity: counter,
-        gridAlign: { height: 1, cellWidth: 16, cellHeight: 5, x: 18, y: 251 }
+        gridAlign: {height: 1, cellWidth: 16, cellHeight: 5, x: 18, y: 251}
       })
 
       /** @type Phaser.GameObjects.Group */
@@ -77,7 +133,7 @@ export default class Game extends Phaser.Scene {
         key: 'assets',
         frame: "lifeIndicator.png",
         quantity: counter,
-        gridAlign: { height: 1, cellWidth: 16, cellHeight: 5, x: 17, y: 248 }
+        gridAlign: {height: 1, cellWidth: 16, cellHeight: 5, x: 17, y: 248}
       })
 
     }
@@ -92,11 +148,21 @@ export default class Game extends Phaser.Scene {
     this.gameState = this.states.WAITING
 
     // create paddle
-    this.paddle = this.physics.add.staticImage(this.cameras.main.centerX, 240, 'assets', 'paddle.png')
+    this.paddle = this.physics.add.staticImage(
+      this.cameras.main.centerX,
+      240,
+      'assets',
+      'paddle.png')
 
-    // create ball 
-    this.ball = this.physics.add.image(this.paddle.x, this.paddle.y - 30, 'assets', 'ball.png').setBounce(1)
+    // create ball
+    this.ball = this.physics.add.image(
+      this.paddle.x,
+      this.paddle.y - 30,
+      'assets',
+      'ball.png')
+      .setBounce(1)
 
+    // CURRENTLY UNUSED
     this.resetLevel = function () {
       this.gameState = this.states.WAITING
       this.score = 0
@@ -107,8 +173,8 @@ export default class Game extends Phaser.Scene {
     }
 
     /**
-     * @param {Phaser.Physics.Arcade.Image} ball 
-     * @param {Phaser.Physics.Arcade.Image} brick 
+     * @param {Phaser.Physics.Arcade.Image} ball
+     * @param {Phaser.Physics.Arcade.Image} brick
      */
     this.hitYellowBrick = function (ball, brick) {
       brick.disableBody(true, true)
@@ -117,7 +183,7 @@ export default class Game extends Phaser.Scene {
       this.scoreBoard.setText(`SCORE:${this.score}`)
 
       if (this.yellowBricks.countActive() === 0) {
-        this.scene.start('GameOver', { score: this.score, status: "WON" })
+        this.scene.start('GameOver', {score: this.score, status: "WON"})
       }
     }
 
@@ -160,18 +226,16 @@ export default class Game extends Phaser.Scene {
         this.ball.setVelocity(0)
         this.previousText = this.scoreBoard.text
         this.scoreBoard.setText("PAUSED")
-        // this.pausedText = this.add.bitmapText(this.cameras.main.width / 2, this.cameras.main.height / 2, 'ibm_vga', "PAUSED", 24).setOrigin(0.5)
         this.gameState = this.states.PAUSED
       } else if (this.gameState === this.states.PAUSED) {
         this.gameState = this.previousGameState
         this.scoreBoard.setText(this.previousText)
         this.ball.setVelocity(this.previousBallVelocityX, this.previousBallVelocityY)
-        // this.pausedText.destroy()
       }
     })
   }
 
-  update() {
+  update(time, delta) {
     // Handle input
     // move paddle
     if (this.gameState !== this.states.PAUSED) {
@@ -189,26 +253,26 @@ export default class Game extends Phaser.Scene {
         }
       }
       // release ball when player presses up
-      if (this.gameState == this.states.WAITING && this.cursors.up.isDown && this.ball.getData('isReady')) {
+      if (this.gameState === this.states.WAITING && this.cursors.up.isDown && this.ball.getData('isReady')) {
         this.gameState = this.states.PLAYING
         this.ball.setVelocity(60, -200)
-        this.ball.setData({ isReady: false })
+        this.ball.setData({isReady: false})
       }
 
     }
     // Stick ball to paddle if game is waiting for player input
-    if (this.gameState == this.states.WAITING) {
+    if (this.gameState === this.states.WAITING) {
       this.ball.x = this.paddle.x
       this.ball.y = this.paddle.y - this.ball.height * 2
       this.ball.setVelocity(0, 0)
-      this.ball.setData({ isReady: true })
+      this.ball.setData({isReady: true})
     }
 
     if (this.ball.y > this.paddle.y) {
       this.gameState = this.states.WAITING
       this.extraShips--
       if (this.extraShips < 0) {
-        this.scene.start('GameOver', { score: this.score, status: 'LOST' })
+        this.scene.start('GameOver', {score: this.score, status: 'LOST'})
         return
       }
       this.updateExtraShips(this.extraShips)

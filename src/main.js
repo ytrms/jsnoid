@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 import Game from './scenes/Game'
 import GameOver from './scenes/GameOver'
+import Level_1 from './scenes/Level-1'
 
 const config = {
   pixelArt: true,
@@ -23,5 +24,6 @@ const game = new Phaser.Game(config)
 
 game.scene.add('Game', Game)
 game.scene.add('GameOver', GameOver)
+game.scene.add('Level_1', Level_1)
 
-game.scene.start('Game')
+game.scene.start('Level_1')
