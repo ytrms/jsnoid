@@ -1,18 +1,18 @@
 import Phaser from 'phaser'
-import assetspng from './../assets/sprites.png'
-import assetsjson from './../assets/sprites.json'
-import fontpng from './../assets/IBM_VGA_9x8_0.png'
-import fontxml from './../assets/IBM_VGA_9x8.xml'
+import assetsPNG from './../assets/sprites.png'
+import assetsJSON from './../assets/sprites.json'
+import fontPNG from './../assets/IBM_VGA_9x8_0.png'
+import fontXML from './../assets/IBM_VGA_9x8.xml'
 import brickHitSound from './../assets/brick-hit.wav'
 import paddleHitSound from './../assets/paddleHit.wav'
 import ballLostSound from './../assets/ballLost.wav'
 import winSound from './../assets/win.wav'
 import loseSound from './../assets/lose.wav'
 
-export default class Game extends Phaser.Scene {
+export default class Level extends Phaser.Scene {
   preload() {
-    this.load.atlas('assets', assetspng, assetsjson)
-    this.load.bitmapFont('ibm_vga', fontpng, fontxml)
+    this.load.atlas('assets', assetsPNG, assetsJSON)
+    this.load.bitmapFont('ibm_vga', fontPNG, fontXML)
     this.load.audio("brickHitSound", brickHitSound)
     this.load.audio("paddleHitSound", paddleHitSound)
     this.load.audio("ballLostSound", ballLostSound)
