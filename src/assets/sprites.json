@@ -9,7 +9,7 @@
 	"sourceSize": {"w":5,"h":4}
 },
 {
-	"filename": "bg-tile.png",
+	"filename": "bg-lv1.png",
 	"frame": {"x":5,"y":0,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
@@ -17,8 +17,32 @@
 	"sourceSize": {"w":32,"h":32}
 },
 {
-	"filename": "brick-yellow.png",
-	"frame": {"x":37,"y":0,"w":16,"h":8},
+	"filename": "bg-lv2.png",
+	"frame": {"x":37,"y":0,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+{
+	"filename": "bg-lv3.png",
+	"frame": {"x":69,"y":0,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+{
+	"filename": "brickRed.png",
+	"frame": {"x":101,"y":0,"w":16,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
+	"sourceSize": {"w":16,"h":8}
+},
+{
+	"filename": "brickYellow.png",
+	"frame": {"x":117,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
@@ -26,7 +50,7 @@
 },
 {
 	"filename": "left-border.png",
-	"frame": {"x":53,"y":0,"w":8,"h":240},
+	"frame": {"x":133,"y":0,"w":8,"h":240},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":240},
@@ -34,7 +58,7 @@
 },
 {
 	"filename": "lifeIndicator.png",
-	"frame": {"x":61,"y":0,"w":15,"h":5},
+	"frame": {"x":141,"y":0,"w":15,"h":5},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":5},
@@ -42,7 +66,7 @@
 },
 {
 	"filename": "lifeIndicatorShadow.png",
-	"frame": {"x":76,"y":0,"w":15,"h":5},
+	"frame": {"x":156,"y":0,"w":15,"h":5},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":5},
@@ -50,7 +74,7 @@
 },
 {
 	"filename": "paddle.png",
-	"frame": {"x":91,"y":0,"w":32,"h":8},
+	"frame": {"x":171,"y":0,"w":32,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":8},
@@ -71,6 +95,6 @@
 	"format": "RGBA8888",
 	"size": {"w":224,"h":248},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:899bbe3c1ab845c70f5641a9c31d3570:45d8730b0d604d057ea3dbfd92ed211e:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:80422ca39427faf4a2e6c73a20240bca:6e1e499c71d0bb6715dd12940e13f1c0:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

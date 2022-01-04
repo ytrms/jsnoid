@@ -32,7 +32,7 @@ export default class GameOver extends Phaser.Scene {
     this.add.bitmapText(1, this.cameras.main.height - 8, 'ibm_vga', "Rose Software (c) 2022", 8).setOrigin(0)
 
     this.input.keyboard.on('keydown-SPACE', () => {
-      this.scene.start('Game')
+      this.scene.start('Level_1')
     })
   }
 }
