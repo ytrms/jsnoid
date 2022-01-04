@@ -10,7 +10,7 @@
 },
 {
 	"filename": "bg-lv1.png",
-	"frame": {"x":5,"y":0,"w":32,"h":32},
+	"frame": {"x":0,"y":16,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -18,7 +18,7 @@
 },
 {
 	"filename": "bg-lv2.png",
-	"frame": {"x":37,"y":0,"w":32,"h":32},
+	"frame": {"x":32,"y":16,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -26,15 +26,95 @@
 },
 {
 	"filename": "bg-lv3.png",
-	"frame": {"x":69,"y":0,"w":32,"h":32},
+	"frame": {"x":64,"y":16,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32}
 },
 {
+	"filename": "bg-lv4.png",
+	"frame": {"x":96,"y":16,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+{
+	"filename": "brickBlue.png",
+	"frame": {"x":35,"y":0,"w":16,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
+	"sourceSize": {"w":16,"h":8}
+},
+{
+	"filename": "brickBrown.png",
+	"frame": {"x":51,"y":0,"w":16,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
+	"sourceSize": {"w":16,"h":8}
+},
+{
+	"filename": "brickGold.png",
+	"frame": {"x":67,"y":0,"w":16,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
+	"sourceSize": {"w":16,"h":8}
+},
+{
+	"filename": "brickGreen.png",
+	"frame": {"x":83,"y":0,"w":16,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
+	"sourceSize": {"w":16,"h":8}
+},
+{
+	"filename": "brickOrange.png",
+	"frame": {"x":99,"y":0,"w":16,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
+	"sourceSize": {"w":16,"h":8}
+},
+{
+	"filename": "brickPink.png",
+	"frame": {"x":115,"y":0,"w":16,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
+	"sourceSize": {"w":16,"h":8}
+},
+{
 	"filename": "brickRed.png",
-	"frame": {"x":101,"y":0,"w":16,"h":8},
+	"frame": {"x":131,"y":0,"w":16,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
+	"sourceSize": {"w":16,"h":8}
+},
+{
+	"filename": "brickSilver.png",
+	"frame": {"x":147,"y":0,"w":16,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
+	"sourceSize": {"w":16,"h":8}
+},
+{
+	"filename": "brickSilverCracked.png",
+	"frame": {"x":163,"y":0,"w":16,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
+	"sourceSize": {"w":16,"h":8}
+},
+{
+	"filename": "brickWhite.png",
+	"frame": {"x":179,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
@@ -42,15 +122,23 @@
 },
 {
 	"filename": "brickYellow.png",
-	"frame": {"x":117,"y":0,"w":16,"h":8},
+	"frame": {"x":195,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
 	"sourceSize": {"w":16,"h":8}
 },
 {
+	"filename": "guy.png",
+	"frame": {"x":128,"y":16,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+{
 	"filename": "left-border.png",
-	"frame": {"x":133,"y":0,"w":8,"h":240},
+	"frame": {"x":160,"y":16,"w":8,"h":240},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":240},
@@ -58,7 +146,7 @@
 },
 {
 	"filename": "lifeIndicator.png",
-	"frame": {"x":141,"y":0,"w":15,"h":5},
+	"frame": {"x":5,"y":0,"w":15,"h":5},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":5},
@@ -66,7 +154,7 @@
 },
 {
 	"filename": "lifeIndicatorShadow.png",
-	"frame": {"x":156,"y":0,"w":15,"h":5},
+	"frame": {"x":20,"y":0,"w":15,"h":5},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":5},
@@ -74,7 +162,7 @@
 },
 {
 	"filename": "paddle.png",
-	"frame": {"x":171,"y":0,"w":32,"h":8},
+	"frame": {"x":211,"y":0,"w":32,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":8},
@@ -82,19 +170,27 @@
 },
 {
 	"filename": "top-border.png",
-	"frame": {"x":0,"y":240,"w":224,"h":8},
+	"frame": {"x":0,"y":8,"w":224,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":224,"h":8},
 	"sourceSize": {"w":224,"h":8}
+},
+{
+	"filename": "whiteBrick.png",
+	"frame": {"x":224,"y":8,"w":16,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
+	"sourceSize": {"w":16,"h":8}
 }],
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "sprites.png",
 	"format": "RGBA8888",
-	"size": {"w":224,"h":248},
+	"size": {"w":243,"h":256},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:80422ca39427faf4a2e6c73a20240bca:6e1e499c71d0bb6715dd12940e13f1c0:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:4b0ea27ef6e293559fd3e6684dfa543f:6b1d3f6e1f7e6559e5576ee209add5e4:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

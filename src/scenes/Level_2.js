@@ -10,10 +10,9 @@ export default class Level_2 extends Level {
   }
 
   create() {
-    super.create('bg-lv2.png')
-    // if (this.newScore) {
-    //   this.score = this.newScore
-    // }
+    this.currentLevelNumber = 2
+    this.bgTileFrame = 'bg-lv2.png'
+    super.create()
 
     this.nextLevel = 'Level_3'
 

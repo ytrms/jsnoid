@@ -21,7 +21,7 @@ export default class Level extends Phaser.Scene {
     this.load.audio("loseSound", loseSound)
   }
 
-  create(bgTileFrame) {
+  create() {
     // initialization for later levels (inheritors)
     if (this.newScore) {
       this.score = this.newScore
@@ -46,7 +46,12 @@ export default class Level extends Phaser.Scene {
       this.cameras.main.width,
       this.cameras.main.height,
       'assets',
-      bgTileFrame)
+      this.bgTileFrame)
+
+    // G's policeman
+    if (this.currentLevelNumber === 1) {
+      this.add.image(138, 110, 'assets', 'guy.png')
+    }
 
     // create shadows
     this.paddleShadow = this.add.image(
@@ -198,11 +203,27 @@ export default class Level extends Phaser.Scene {
      */
     this.hitBrick = (ball, brick) => {
       if (brick.getData('isDestructible')) {
-        brick.disableBody(true, true)
-        this.brickDestroyedSound.play()
+        if (brick.getData('vitality') === 1) {
+          brick.disableBody(true, true)
+          this.brickDestroyedSound.play()
+          this.score += brick.getData('points')
+          this.scoreBoard.setText(`SCORE:${this.score}`)
+        } else {
+          let vitality = brick.getData('vitality')
+          brick.setData('vitality', vitality - 1)
+
+          if (brick.getData('color') === 'silver' && brick.getData('vitality') === 1) {
+            brick.setTexture('assets', 'brickSilverCracked.png')
+          }
+
+          brick.setTintFill(0xffffff)
+          this.time.delayedCall(30, () => brick.clearTint())
+        }
       }
-      this.score += brick.getData('points')
-      this.scoreBoard.setText(`SCORE:${this.score}`)
+
+      // hit gold
+      brick.setTintFill(0xffffff)
+      this.time.delayedCall(30, () => brick.clearTint())
 
       if (this.destructibleBricks.countActive() === 0) {
         console.log('Score', this.score);
@@ -233,6 +254,12 @@ export default class Level extends Phaser.Scene {
     this.physics.add.collider(this.ball, rightBorder, () => this.paddleHitSound.play(), null, this)
 
     this.scoreBoard = this.add.bitmapText(2, 2, 'ibm_vga', "PRESS UP TO LAUNCH", 8)
+    this.currentLevelBoard = this.add.bitmapText(
+      this.cameras.main.width,
+      10,
+      'ibm_vga',
+      `${this.currentLevelNumber}/3`
+    ).setOrigin(1)
 
     this.cursors = this.input.keyboard.createCursorKeys()
 
@@ -275,6 +302,7 @@ export default class Level extends Phaser.Scene {
       }
       // release ball when player presses up
       if (this.gameState === this.states.WAITING && this.cursors.up.isDown && this.ball.getData('isReady')) {
+        this.scoreBoard.setText(`SCORE:${this.score}`)
         this.gameState = this.states.PLAYING
         this.ball.setVelocity(60, -200)
         this.ball.setData({ isReady: false })

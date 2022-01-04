@@ -10,7 +10,9 @@ export default class Level_2 extends Level {
   }
 
   create() {
-    super.create('bg-lv3.png')
+    this.currentLevelNumber = 3
+    this.bgTileFrame = 'bg-lv3.png'
+    super.create()
 
     this.nextLevel = 'GameOver'
 
@@ -25,7 +27,7 @@ export default class Level_2 extends Level {
     })
 
     this.yellowBricks.getChildren().forEach(brick => {
-      brick.setData({ isDestructible: true, color: 'yellow', points: 120 })
+      brick.setData({ isDestructible: true, color: 'yellow', points: 120, vitality: 1 })
     });
 
     /**
