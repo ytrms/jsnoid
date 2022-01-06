@@ -31,4 +31,4 @@ game.scene.add('Level_3', Level_3)
 
 game.scene.add('GameOver', GameOver)
 
-game.scene.start('Level_2')
+game.scene.start('Level_1')
