@@ -23,30 +23,30 @@ export default class Level_2 extends Level {
       key: 'assets',
       frame: 'brickGreen.png',
       frameQuantity: 13,
-      gridAlign: { width: 13, height: 1, cellWidth: 16, cellHeight: 8, x: 8, y: 32 }
-    }).setOrigin(0)
+      gridAlign: { width: 13, height: 1, cellWidth: 16, cellHeight: 8, x: 16, y: 32 }
+    })
 
     this.greenBricks.getChildren().forEach(brick => {
-      brick.setData({ isDestructible: true, color: 'green', points: 120, vitality: 1 })
+      brick.setData({ isDestructible: true, color: 'green', points: 80, vitality: 1 })
     });
 
     this.whiteBricks1 = this.physics.add.staticGroup({
       key: 'assets',
       frame: 'brickWhite.png',
       frameQuantity: 3,
-      gridAlign: { width: 3, height: 1, cellWidth: 16, cellHeight: 8, x: 8, y: 48 }
-    }).setOrigin(0)
+      gridAlign: { width: 3, height: 1, cellWidth: 16, cellHeight: 8, x: 16, y: 48 }
+    })
 
     this.whiteBricks1.getChildren().forEach(brick => {
-      brick.setData({ isDestructible: true, color: 'green', points: 120, vitality: 1 })
+      brick.setData({ isDestructible: true, color: 'white', points: 50, vitality: 1 })
     });
 
     this.goldBricks1 = this.physics.add.staticGroup({
       key: 'assets',
       frame: 'brickGold.png',
       frameQuantity: 10,
-      gridAlign: { width: 10, height: 1, cellWidth: 16, cellHeight: 8, x: 56, y: 48 }
-    }).setOrigin(0)
+      gridAlign: { width: 10, height: 1, cellWidth: 16, cellHeight: 8, x: 64, y: 48 }
+    })
 
     this.goldBricks1.getChildren().forEach(brick => {
       brick.setData({ isDestructible: false, color: 'gold', points: 0, vitality: 0 })
@@ -56,19 +56,19 @@ export default class Level_2 extends Level {
       key: 'assets',
       frame: 'brickRed.png',
       frameQuantity: 13,
-      gridAlign: { width: 13, height: 1, cellWidth: 16, cellHeight: 8, x: 8, y: 64 }
-    }).setOrigin(0)
+      gridAlign: { width: 13, height: 1, cellWidth: 16, cellHeight: 8, x: 16, y: 64 }
+    })
 
     this.redBricks.getChildren().forEach(brick => {
-      brick.setData({ isDestructible: true, color: 'red', points: 120, vitality: 1 })
+      brick.setData({ isDestructible: true, color: 'red', points: 90, vitality: 1 })
     });
 
     this.goldBricks2 = this.physics.add.staticGroup({
       key: 'assets',
       frame: 'brickGold.png',
       frameQuantity: 10,
-      gridAlign: { width: 10, height: 1, cellWidth: 16, cellHeight: 8, x: 8, y: 80 }
-    }).setOrigin(0)
+      gridAlign: { width: 10, height: 1, cellWidth: 16, cellHeight: 8, x: 16, y: 80 }
+    })
 
     this.goldBricks2.getChildren().forEach(brick => {
       brick.setData({ isDestructible: false, color: 'gold', points: 0, vitality: 0 })
@@ -78,41 +78,41 @@ export default class Level_2 extends Level {
       key: 'assets',
       frame: 'brickWhite.png',
       frameQuantity: 3,
-      gridAlign: { width: 3, height: 1, cellWidth: 16, cellHeight: 8, x: 168, y: 80 }
-    }).setOrigin(0)
+      gridAlign: { width: 3, height: 1, cellWidth: 16, cellHeight: 8, x: 176, y: 80 }
+    })
 
     this.whiteBricks2.getChildren().forEach(brick => {
-      brick.setData({ isDestructible: true, color: 'white', points: 0, vitality: 1 })
+      brick.setData({ isDestructible: true, color: 'white', points: 50, vitality: 1 })
     });
 
     this.pinkBricks = this.physics.add.staticGroup({
       key: 'assets',
       frame: 'brickPink.png',
       frameQuantity: 13,
-      gridAlign: { width: 13, height: 1, cellWidth: 16, cellHeight: 8, x: 8, y: 96 }
-    }).setOrigin(0)
+      gridAlign: { width: 13, height: 1, cellWidth: 16, cellHeight: 8, x: 16, y: 96 }
+    })
 
     this.pinkBricks.getChildren().forEach(brick => {
-      brick.setData({ isDestructible: true, color: 'pink', points: 0, vitality: 1 })
+      brick.setData({ isDestructible: true, color: 'pink', points: 110, vitality: 1 })
     });
 
     this.blueBricks = this.physics.add.staticGroup({
       key: 'assets',
       frame: 'brickBlue.png',
       frameQuantity: 3,
-      gridAlign: { width: 3, height: 1, cellWidth: 16, cellHeight: 8, x: 8, y: 112 }
-    }).setOrigin(0)
+      gridAlign: { width: 3, height: 1, cellWidth: 16, cellHeight: 8, x: 16, y: 112 }
+    })
 
     this.blueBricks.getChildren().forEach(brick => {
-      brick.setData({ isDestructible: true, color: 'blue', points: 0, vitality: 1 })
+      brick.setData({ isDestructible: true, color: 'blue', points: 100, vitality: 1 })
     });
 
     this.goldBricks3 = this.physics.add.staticGroup({
       key: 'assets',
       frame: 'brickGold.png',
       frameQuantity: 10,
-      gridAlign: { width: 10, height: 1, cellWidth: 16, cellHeight: 8, x: 56, y: 112 }
-    }).setOrigin(0)
+      gridAlign: { width: 10, height: 1, cellWidth: 16, cellHeight: 8, x: 64, y: 112 }
+    })
 
     this.goldBricks3.getChildren().forEach(brick => {
       brick.setData({ isDestructible: false, color: 'gold', points: 0, vitality: 0 })
@@ -122,19 +122,19 @@ export default class Level_2 extends Level {
       key: 'assets',
       frame: 'brickBrown.png',
       frameQuantity: 13,
-      gridAlign: { width: 13, height: 1, cellWidth: 16, cellHeight: 8, x: 8, y: 128 }
-    }).setOrigin(0)
+      gridAlign: { width: 13, height: 1, cellWidth: 16, cellHeight: 8, x: 16, y: 128 }
+    })
 
     this.brownBricks1.getChildren().forEach(brick => {
-      brick.setData({ isDestructible: true, color: 'brown', points: 0, vitality: 1 })
+      brick.setData({ isDestructible: true, color: 'brown', points: 70, vitality: 1 })
     });
 
     this.goldBricks4 = this.physics.add.staticGroup({
       key: 'assets',
       frame: 'brickGold.png',
       frameQuantity: 10,
-      gridAlign: { width: 10, height: 1, cellWidth: 16, cellHeight: 8, x: 8, y: 144 }
-    }).setOrigin(0)
+      gridAlign: { width: 10, height: 1, cellWidth: 16, cellHeight: 8, x: 16, y: 144 }
+    })
 
     this.goldBricks4.getChildren().forEach(brick => {
       brick.setData({ isDestructible: false, color: 'gold', points: 0, vitality: 0 })
@@ -144,11 +144,11 @@ export default class Level_2 extends Level {
       key: 'assets',
       frame: 'brickBrown.png',
       frameQuantity: 3,
-      gridAlign: { width: 3, height: 1, cellWidth: 16, cellHeight: 8, x: 168, y: 144 }
-    }).setOrigin(0)
+      gridAlign: { width: 3, height: 1, cellWidth: 16, cellHeight: 8, x: 176, y: 144 }
+    })
 
     this.brownBricks2.getChildren().forEach(brick => {
-      brick.setData({ isDestructible: true, color: 'brown', points: 0, vitality: 1 })
+      brick.setData({ isDestructible: true, color: 'brown', points: 70, vitality: 1 })
     });
 
     /**
