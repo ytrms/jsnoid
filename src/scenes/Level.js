@@ -29,7 +29,7 @@ export default class Level extends Phaser.Scene {
       console.log('this.extraShips', this.extraShips);
     } else {
       this.score = 0
-      this.extraShips = 3
+      this.extraShips = 6
     }
 
     // add audio files
@@ -304,7 +304,7 @@ export default class Level extends Phaser.Scene {
       if (this.gameState === this.states.WAITING && this.cursors.up.isDown && this.ball.getData('isReady')) {
         this.scoreBoard.setText(`SCORE:${this.score}`)
         this.gameState = this.states.PLAYING
-        this.ball.setVelocity(60, -250)
+        this.ball.setVelocity(60, -200)
         this.ball.setData({ isReady: false })
       }
     }
