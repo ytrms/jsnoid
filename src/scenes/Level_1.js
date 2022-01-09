@@ -13,7 +13,7 @@ export default class Level_1 extends Level {
     this.currentLevelNumber = 1
     this.bgTileFrame = 'bg-lv4.png'
     super.create()
-    this.nextLevel = 'Level_2'
+    this.nextLevel = 'Cutscene_1'
 
     // add bricks
     this.silverBricks = this.physics.add.staticGroup({

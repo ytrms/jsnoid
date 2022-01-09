@@ -10,7 +10,7 @@
 },
 {
 	"filename": "bg-lv1.png",
-	"frame": {"x":32,"y":8,"w":32,"h":32},
+	"frame": {"x":59,"y":8,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -18,7 +18,7 @@
 },
 {
 	"filename": "bg-lv2.png",
-	"frame": {"x":64,"y":8,"w":32,"h":32},
+	"frame": {"x":91,"y":8,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -26,7 +26,7 @@
 },
 {
 	"filename": "bg-lv3.png",
-	"frame": {"x":96,"y":8,"w":32,"h":32},
+	"frame": {"x":123,"y":8,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -34,7 +34,7 @@
 },
 {
 	"filename": "bg-lv4.png",
-	"frame": {"x":128,"y":8,"w":32,"h":32},
+	"frame": {"x":155,"y":8,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -130,7 +130,7 @@
 },
 {
 	"filename": "guy.png",
-	"frame": {"x":160,"y":8,"w":32,"h":32},
+	"frame": {"x":187,"y":8,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -159,6 +159,14 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":5},
 	"sourceSize": {"w":15,"h":5}
+},
+{
+	"filename": "logo.png",
+	"frame": {"x":32,"y":8,"w":27,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":27,"h":24},
+	"sourceSize": {"w":27,"h":24}
 },
 {
 	"filename": "paddle.png",
@@ -191,6 +199,6 @@
 	"format": "RGBA8888",
 	"size": {"w":224,"h":288},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:eb86b803fa5d50e6f120e22ad0478ad0:5698cae8fd802addd69f3e402059938d:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:c5a74d3ce65813098d10250c8a04ece9:d8bc2ca8055cac64a240e8885722b415:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

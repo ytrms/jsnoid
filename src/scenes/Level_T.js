@@ -13,14 +13,14 @@ export default class Level_1 extends Level {
     this.currentLevelNumber = 1
     this.bgTileFrame = 'bg-lv1.png'
     super.create()
-    this.nextLevel = 'Level_2'
+    this.nextLevel = 'Cutscene_1'
 
     // add bricks
     this.silverBricks = this.physics.add.staticGroup({
       key: 'assets',
       frame: 'brickSilver.png',
-      frameQuantity: 13,
-      gridAlign: {width: 13, height: 1, cellWidth: 16, cellHeight: 8, x: 16, y: 50}
+      frameQuantity: 1,
+      gridAlign: { width: 1, height: 1, cellWidth: 16, cellHeight: 8, x: 16, y: 50 }
     })
 
     this.silverBricks.getChildren().forEach(brick => {

@@ -6,6 +6,7 @@ import Level_1 from './scenes/Level_1'
 import Level_2 from './scenes/Level_2'
 import Level_3 from './scenes/Level_3'
 import Level_T from './scenes/Level_T'
+import Cutscene_1 from './scenes/Cutscene_1'
 
 const config = {
   pixelArt: true,
@@ -13,6 +14,7 @@ const config = {
   height: 256,
   zoom: 2,
   type: Phaser.AUTO,
+  banner: { text: 'white', background: ['#847e87', '#696a6a', '#595652', '#222034', '#000000'] },
   physics: {
     default: 'arcade',
     arcade: {
@@ -33,6 +35,8 @@ game.scene.add('Level_1', Level_1)
 game.scene.add('Level_2', Level_2)
 game.scene.add('Level_3', Level_3)
 
+game.scene.add('Cutscene_1', Cutscene_1)
+
 game.scene.add('GameOver', GameOver)
 
-game.scene.start('Intro')
+game.scene.start('Level_3')

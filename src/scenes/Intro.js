@@ -13,7 +13,7 @@ export default class Intro extends Phaser.Scene {
   }
 
   create() {
-    this.introBGM = this.sound.add("introBGM", {loop: true, volume: 0.5})
+    this.introBGM = this.sound.add("introBGM", { loop: true, volume: 0.5 })
     this.introBGM.play()
 
     // create shadows
@@ -22,27 +22,6 @@ export default class Intro extends Phaser.Scene {
       110,
       'assets',
       'titleCard.png').setOrigin(0.5)
-
-    // this.titleText = this.add.bitmapText(
-    //   this.cameras.main.width / 2,
-    //   this.cameras.main.height / 2,
-    //   'ibm_vga',
-    //   `Breakoid`,
-    //   16).setOrigin(0.5)
-
-    // this.add.bitmapText(
-    //     this.cameras.main.width / 2,
-    //     this.gameOverText.y + 16,
-    //     'ibm_vga',
-    //     `by Graves Games`,
-    //     8).setOrigin(0.5)
-
-    // this.subTitle = this.add.bitmapText(
-    //   this.cameras.main.width / 2,
-    //   this.titleText.y + 18,
-    //   'ibm_vga',
-    //   `Between Worlds`,
-    //   8).setOrigin(0.5)
 
     this.add.bitmapText(
       this.cameras.main.width / 2,
@@ -53,11 +32,13 @@ export default class Intro extends Phaser.Scene {
       .setOrigin(0.5)
 
     this.add.bitmapText(
-      this.cameras.main.width / 2,
-      this.cameras.main.height - 8,
+      35,
+      this.cameras.main.height - 22,
       'ibm_vga',
-      "Graves Games (c) 2022",
-      8).setOrigin(0.5)
+      "Graves\nGames",
+      8).setOrigin(0)
+
+    this.add.image(18, 240, 'assets', 'logo.png')
 
     this.input.keyboard.on('keydown-SPACE', () => {
       this.introBGM.stop()

@@ -24,34 +24,43 @@ export default class GameOver extends Phaser.Scene {
     this.status === "WON" ? this.statusText = "YOU WON!" : this.statusText = "GAME OVER"
 
     this.gameOverText = this.add.bitmapText(
-        this.cameras.main.width / 2,
-        this.cameras.main.height / 2,
-        'ibm_vga',
-        `${this.statusText}`,
-        16).setOrigin(0.5)
+      this.cameras.main.width / 2,
+      this.cameras.main.height / 2,
+      'ibm_vga',
+      `${this.statusText}`,
+      16).setOrigin(0.5)
 
     this.pointsText = this.add.bitmapText(
-        this.cameras.main.width / 2,
-        this.gameOverText.y + 16,
-        'ibm_vga',
-        `${this.score} PTS`,
-        8).setOrigin(0.5)
+      this.cameras.main.width / 2,
+      this.gameOverText.y + 16,
+      'ibm_vga',
+      `${this.score} PTS`,
+      8).setOrigin(0.5)
 
     this.add.bitmapText(
-        this.cameras.main.width / 2,
-        this.pointsText.y + 24,
-        'ibm_vga',
-        `PRESS SPACE TO RESTART`,
-        8).setOrigin(0.5)
+      this.cameras.main.width / 2,
+      this.pointsText.y + 24,
+      'ibm_vga',
+      `PRESS SPACE TO RESTART`,
+      8).setOrigin(0.5)
 
     this.status === "WON" ? this.gameWinSound.play() : this.gameLoseSound.play()
 
     this.add.bitmapText(
-        1,
-        this.cameras.main.height - 24,
-        'ibm_vga',
-        "Graves Games (c) 2022\nArt: @gulselsh\nProg: @ytrms",
-        8).setOrigin(0)
+      35,
+      this.cameras.main.height - 22,
+      'ibm_vga',
+      "Graves\nGames",
+      8).setOrigin(0)
+
+    this.add.image(18, 240, 'assets', 'logo.png')
+
+    this.add.bitmapText(
+      this.cameras.main.width - 3,
+      this.cameras.main.height - 3,
+      'ibm_vga',
+      "(c)2022",
+      8).setOrigin(1)
 
     this.input.keyboard.on('keydown-SPACE', () => {
       this.scene.start('Level_1')
