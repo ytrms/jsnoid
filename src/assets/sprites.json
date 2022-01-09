@@ -10,7 +10,7 @@
 },
 {
 	"filename": "bg-lv1.png",
-	"frame": {"x":0,"y":16,"w":32,"h":32},
+	"frame": {"x":32,"y":8,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -18,7 +18,7 @@
 },
 {
 	"filename": "bg-lv2.png",
-	"frame": {"x":32,"y":16,"w":32,"h":32},
+	"frame": {"x":64,"y":8,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -26,7 +26,7 @@
 },
 {
 	"filename": "bg-lv3.png",
-	"frame": {"x":64,"y":16,"w":32,"h":32},
+	"frame": {"x":96,"y":8,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -34,7 +34,7 @@
 },
 {
 	"filename": "bg-lv4.png",
-	"frame": {"x":96,"y":16,"w":32,"h":32},
+	"frame": {"x":128,"y":8,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -130,7 +130,7 @@
 },
 {
 	"filename": "guy.png",
-	"frame": {"x":128,"y":16,"w":32,"h":32},
+	"frame": {"x":160,"y":8,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -138,7 +138,7 @@
 },
 {
 	"filename": "left-border.png",
-	"frame": {"x":160,"y":16,"w":8,"h":240},
+	"frame": {"x":0,"y":48,"w":8,"h":240},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":240},
@@ -162,35 +162,35 @@
 },
 {
 	"filename": "paddle.png",
-	"frame": {"x":211,"y":0,"w":32,"h":8},
+	"frame": {"x":0,"y":8,"w":32,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":8},
 	"sourceSize": {"w":32,"h":8}
 },
 {
+	"filename": "titleCard.png",
+	"frame": {"x":8,"y":48,"w":136,"h":128},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":136,"h":128},
+	"sourceSize": {"w":136,"h":128}
+},
+{
 	"filename": "top-border.png",
-	"frame": {"x":0,"y":8,"w":224,"h":8},
+	"frame": {"x":0,"y":40,"w":224,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":224,"h":8},
 	"sourceSize": {"w":224,"h":8}
-},
-{
-	"filename": "whiteBrick.png",
-	"frame": {"x":224,"y":8,"w":16,"h":8},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
-	"sourceSize": {"w":16,"h":8}
 }],
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "sprites.png",
 	"format": "RGBA8888",
-	"size": {"w":243,"h":256},
+	"size": {"w":224,"h":288},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:4b0ea27ef6e293559fd3e6684dfa543f:6b1d3f6e1f7e6559e5576ee209add5e4:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:eb86b803fa5d50e6f120e22ad0478ad0:5698cae8fd802addd69f3e402059938d:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

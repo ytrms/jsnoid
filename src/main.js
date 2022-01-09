@@ -19,7 +19,7 @@ const config = {
       debug: false
     }
   },
-  title: 'JSnoid',
+  title: 'Breakoid: Between Worlds',
   url: 'https://github.com/ytrms/jsnoid',
 }
 

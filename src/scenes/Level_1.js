@@ -11,7 +11,7 @@ export default class Level_1 extends Level {
 
   create() {
     this.currentLevelNumber = 1
-    this.bgTileFrame = 'bg-lv1.png'
+    this.bgTileFrame = 'bg-lv4.png'
     super.create()
     this.nextLevel = 'Level_2'
 
