@@ -1,8 +1,8 @@
 import Phaser from 'phaser'
 import fontpng from './../assets/IBM_VGA_9x8_0.png'
 import fontxml from './../assets/IBM_VGA_9x8.xml'
-import winSound from './../assets/win.wav'
-import loseSound from './../assets/lose.wav'
+import gameWinSound from './../assets/gameWin.wav'
+import gameLoseSound from './../assets/gameLose.wav'
 
 export default class GameOver extends Phaser.Scene {
   init(data) {
@@ -12,24 +12,46 @@ export default class GameOver extends Phaser.Scene {
 
 
   preload() {
-    this.load.audio("winSound", winSound)
-    this.load.audio("loseSound", loseSound)
+    this.load.audio("gameWinSound", gameWinSound)
+    this.load.audio("gameLoseSound", gameLoseSound)
     this.load.bitmapFont('ibm_vga', fontpng, fontxml)
   }
 
   create() {
-    this.winSound = this.sound.add("winSound", { loop: false })
-    this.loseSound = this.sound.add("loseSound", { loop: false })
+    this.gameWinSound = this.sound.add("gameWinSound", { loop: false })
+    this.gameLoseSound = this.sound.add("gameLoseSound", { loop: false })
 
-    this.status == "WON" ? this.statusText = "YOU WON!" : this.statusText = "GAME OVER"
+    this.status === "WON" ? this.statusText = "YOU WON!" : this.statusText = "GAME OVER"
 
-    this.gameOverText = this.add.bitmapText(this.cameras.main.width / 2, this.cameras.main.height / 2, 'ibm_vga', `${this.statusText}`, 16).setOrigin(0.5)
-    this.pointsText = this.add.bitmapText(this.cameras.main.width / 2, this.gameOverText.y + 16, 'ibm_vga', `${this.score} PTS`, 8).setOrigin(0.5)
-    this.add.bitmapText(this.cameras.main.width / 2, this.pointsText.y + 24, 'ibm_vga', `PRESS SPACE TO RESTART`, 8).setOrigin(0.5)
+    this.gameOverText = this.add.bitmapText(
+        this.cameras.main.width / 2,
+        this.cameras.main.height / 2,
+        'ibm_vga',
+        `${this.statusText}`,
+        16).setOrigin(0.5)
 
-    this.status == "WON" ? this.winSound.play() : this.loseSound.play()
+    this.pointsText = this.add.bitmapText(
+        this.cameras.main.width / 2,
+        this.gameOverText.y + 16,
+        'ibm_vga',
+        `${this.score} PTS`,
+        8).setOrigin(0.5)
 
-    this.add.bitmapText(1, this.cameras.main.height - 8, 'ibm_vga', "Rose Software (c) 2022", 8).setOrigin(0)
+    this.add.bitmapText(
+        this.cameras.main.width / 2,
+        this.pointsText.y + 24,
+        'ibm_vga',
+        `PRESS SPACE TO RESTART`,
+        8).setOrigin(0.5)
+
+    this.status === "WON" ? this.gameWinSound.play() : this.gameLoseSound.play()
+
+    this.add.bitmapText(
+        1,
+        this.cameras.main.height - 24,
+        'ibm_vga',
+        "Graves Games (c) 2022\nArt: @gulselsh\nProg: @ytrms",
+        8).setOrigin(0)
 
     this.input.keyboard.on('keydown-SPACE', () => {
       this.scene.start('Level_1')

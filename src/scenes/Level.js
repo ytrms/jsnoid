@@ -4,10 +4,12 @@ import assetsJSON from './../assets/sprites.json'
 import fontPNG from './../assets/IBM_VGA_9x8_0.png'
 import fontXML from './../assets/IBM_VGA_9x8.xml'
 import brickDestroyedSound from './../assets/brickDestroyed.wav'
+import brickHitSound from './../assets/brickHit.wav'
 import paddleHitSound from './../assets/paddleHit.wav'
 import ballLostSound from './../assets/ballLost.wav'
-import winSound from './../assets/win.wav'
-import loseSound from './../assets/lose.wav'
+import gameWinSound from './../assets/gameWin.wav'
+import levelWinSound from './../assets/levelWin.wav'
+import gameLoseSound from './../assets/gameLose.wav'
 
 export default class Level extends Phaser.Scene {
 
@@ -15,10 +17,12 @@ export default class Level extends Phaser.Scene {
     this.load.atlas('assets', assetsPNG, assetsJSON)
     this.load.bitmapFont('ibm_vga', fontPNG, fontXML)
     this.load.audio("brickDestroyedSound", brickDestroyedSound)
+    this.load.audio("brickHitSound", brickHitSound)
     this.load.audio("paddleHitSound", paddleHitSound)
     this.load.audio("ballLostSound", ballLostSound)
-    this.load.audio("winSound", winSound)
-    this.load.audio("loseSound", loseSound)
+    this.load.audio("gameWinSound", gameWinSound)
+    this.load.audio("levelWinSound", levelWinSound)
+    this.load.audio("gameLoseSound", gameLoseSound)
   }
 
   create() {
@@ -34,10 +38,12 @@ export default class Level extends Phaser.Scene {
 
     // add audio files
     this.brickDestroyedSound = this.sound.add("brickDestroyedSound", { loop: false })
+    this.brickHitSound = this.sound.add("brickHitSound", { loop: false })
     this.paddleHitSound = this.sound.add("paddleHitSound", { loop: false })
     this.ballLostSound = this.sound.add("ballLostSound", { loop: false })
-    this.winSound = this.sound.add("winSound", { loop: false })
-    this.loseSound = this.sound.add("loseSound", { loop: false })
+    this.gameWinSound = this.sound.add("gameWinSound", { loop: false })
+    this.levelWinSound = this.sound.add("levelWinSound", {loop: false})
+    this.gameLoseSound = this.sound.add("gameLoseSound", { loop: false })
 
     // set background
     this.bgtile = this.add.tileSprite(
@@ -182,8 +188,6 @@ export default class Level extends Phaser.Scene {
 
     /**
      * Runs whenever a life needs to be deducted.
-     * @param {string} nextScene
-     * @param {object} data
      */
     this.lifeLostRoutine = () => {
       this.gameState = this.states.WAITING
@@ -203,6 +207,7 @@ export default class Level extends Phaser.Scene {
      */
     this.hitBrick = (ball, brick) => {
       if (brick.getData('isDestructible')) {
+        // brick needs to be destroyed this hit
         if (brick.getData('vitality') === 1) {
           brick.disableBody(true, true)
           this.brickDestroyedSound.play()
@@ -218,15 +223,18 @@ export default class Level extends Phaser.Scene {
 
           brick.setTintFill(0xffffff)
           this.time.delayedCall(30, () => brick.clearTint())
+          this.brickHitSound.play()
         }
       }
 
-      // hit gold
-      brick.setTintFill(0xffffff)
-      this.time.delayedCall(30, () => brick.clearTint())
+      if (brick.getData('color') === 'gold') {
+        brick.setTintFill(0xffffff)
+        this.time.delayedCall(30, () => brick.clearTint())
+        this.brickHitSound.play()
+      }
 
       if (this.destructibleBricks.countActive() === 0) {
-        console.log('Score', this.score);
+        this.levelWinSound.play()
         this.scene.start(this.nextLevel, { score: this.score, status: "WON", extraShips: this.extraShips })
       }
     }
@@ -249,9 +257,9 @@ export default class Level extends Phaser.Scene {
     }
 
     this.physics.add.collider(this.ball, this.paddle, this.hitPaddle, null, this)
-    this.physics.add.collider(this.ball, topBorder, () => this.paddleHitSound.play(), null, this)
-    this.physics.add.collider(this.ball, leftBorder, () => this.paddleHitSound.play(), null, this)
-    this.physics.add.collider(this.ball, rightBorder, () => this.paddleHitSound.play(), null, this)
+    this.physics.add.collider(this.ball, topBorder)
+    this.physics.add.collider(this.ball, leftBorder)
+    this.physics.add.collider(this.ball, rightBorder)
 
     this.scoreBoard = this.add.bitmapText(2, 2, 'ibm_vga', "PRESS UP TO LAUNCH", 8)
     this.currentLevelBoard = this.add.bitmapText(
