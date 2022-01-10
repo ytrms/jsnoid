@@ -39,4 +39,4 @@ game.scene.add('Cutscene_1', Cutscene_1)
 
 game.scene.add('GameOver', GameOver)
 
-game.scene.start('Level_3')
+game.scene.start('Intro')

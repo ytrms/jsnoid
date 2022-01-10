@@ -40,6 +40,13 @@ export default class Intro extends Phaser.Scene {
 
     this.add.image(18, 240, 'assets', 'logo.png')
 
+    this.add.bitmapText(
+      this.cameras.main.width - 3,
+      this.cameras.main.height - 3,
+      'ibm_vga',
+      "Alpha",
+      8).setOrigin(1)
+
     this.input.keyboard.on('keydown-SPACE', () => {
       this.introBGM.stop()
       this.scene.start('Level_1')

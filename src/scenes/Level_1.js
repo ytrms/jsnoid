@@ -16,16 +16,16 @@ export default class Level_1 extends Level {
     this.nextLevel = 'Cutscene_1'
 
     // add bricks
-    this.silverBricks = this.physics.add.staticGroup({
-      key: 'assets',
-      frame: 'brickSilver.png',
-      frameQuantity: 13,
-      gridAlign: { width: 13, height: 1, cellWidth: 16, cellHeight: 8, x: 16, y: 50 }
-    })
+    // this.silverBricks = this.physics.add.staticGroup({
+    //   key: 'assets',
+    //   frame: 'brickSilver.png',
+    //   frameQuantity: 13,
+    //   gridAlign: { width: 13, height: 1, cellWidth: 16, cellHeight: 8, x: 16, y: 50 }
+    // })
 
-    this.silverBricks.getChildren().forEach(brick => {
-      brick.setData({ isDestructible: true, color: 'silver', points: 50 * this.currentLevelNumber, vitality: this.currentLevelNumber + 1 })
-    });
+    // this.silverBricks.getChildren().forEach(brick => {
+    //   brick.setData({ isDestructible: true, color: 'silver', points: 50 * this.currentLevelNumber, vitality: this.currentLevelNumber + 1 })
+    // });
 
     this.redBricks = this.physics.add.staticGroup({
       key: 'assets',
@@ -99,8 +99,8 @@ export default class Level_1 extends Level {
      * Then, add the collider between the ball and the bricks.
      */
 
-    this.destructibleBricks = new Phaser.GameObjects.Group(this, this.silverBricks.getChildren())
-    this.destructibleBricks.addMultiple(this.redBricks.getChildren())
+    this.destructibleBricks = new Phaser.GameObjects.Group(this, this.redBricks.getChildren())
+    // this.destructibleBricks.addMultiple(this.redBricks.getChildren())
     this.destructibleBricks.addMultiple(this.yellowBricks.getChildren())
     this.destructibleBricks.addMultiple(this.blueBricks.getChildren())
     this.destructibleBricks.addMultiple(this.pinkBricks.getChildren())
