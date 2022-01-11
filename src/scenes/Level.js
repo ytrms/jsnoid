@@ -10,6 +10,7 @@ import ballLostSound from './../assets/ballLost.wav'
 import gameWinSound from './../assets/gameWin.wav'
 import levelWinSound from './../assets/levelWin.wav'
 import gameLoseSound from './../assets/gameLose.wav'
+import anim1upPNG from './../assets/animSheets/anim1up.png'
 
 export default class Level extends Phaser.Scene {
 
@@ -23,6 +24,7 @@ export default class Level extends Phaser.Scene {
     this.load.audio("gameWinSound", gameWinSound)
     this.load.audio("levelWinSound", levelWinSound)
     this.load.audio("gameLoseSound", gameLoseSound)
+    this.load.spritesheet("anim1up", anim1upPNG, { frameWidth: 16, frameHeight: 8 })
   }
 
   create() {
@@ -33,10 +35,10 @@ export default class Level extends Phaser.Scene {
       console.log('this.extraShips', this.extraShips);
     } else {
       this.score = 0
-      this.extraShips = 6
+      this.extraShips = 3
     }
 
-    this.bricksToNextPowerUp = 7
+    this.bricksToNextPowerUp = Phaser.Math.Between(10, 15)
 
     // add audio files
     this.brickDestroyedSound = this.sound.add("brickDestroyedSound", { loop: false })
@@ -57,9 +59,9 @@ export default class Level extends Phaser.Scene {
       this.bgTileFrame)
 
     //G's policeman
-    if (this.currentLevelNumber === 1) {
-      this.add.image(138, 110, 'assets', 'guy.png')
-    }
+    // if (this.currentLevelNumber === 1) {
+    //   this.add.image(138, 110, 'assets', 'guy.png')
+    // }
 
     // create shadows
     this.paddleShadow = this.add.image(
@@ -124,6 +126,16 @@ export default class Level extends Phaser.Scene {
       'left-border.png')
       .setFlipX(true)
       .setImmovable(true)
+
+    this.powerUpKillZone = this.add.rectangle(
+      0,
+      this.cameras.main.height + 8,
+      this.cameras.main.width,
+      1,
+      0x000000,
+      0
+    ).setOrigin(0)
+    this.physics.add.existing(this.powerUpKillZone, true)
 
     // add lives
     this.updateExtraShips = function (counter) {
@@ -192,6 +204,7 @@ export default class Level extends Phaser.Scene {
      * Runs whenever a life needs to be deducted.
      */
     this.lifeLostRoutine = () => {
+      console.log('powerUps', this.powerUps.getChildren())
       this.gameState = this.states.WAITING
       this.extraShips--
       if (this.extraShips < 0) {
@@ -202,7 +215,28 @@ export default class Level extends Phaser.Scene {
       this.ballLostSound.play()
     }
 
-    const oneUpAnim = this.anims.createFromAseprit
+    this.anim1up = this.anims.create({
+      key: 'fallDown',
+      frames: this.anims.generateFrameNumbers('anim1up'),
+      frameRate: 5
+    })
+
+    this.addShip = () => {
+      this.extraShips++
+      this.updateExtraShips(this.extraShips)
+    }
+
+    /**
+     * 
+     * @param {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} powerUp 
+     */
+    this.hitPowerUp = (paddle, powerUp) => {
+      this.addShip()
+      powerUp.destroy()
+      console.log('You got a powerup and I destroyed it!');
+    }
+
+    this.powerUps = this.physics.add.group()
 
     /**
      * Runs whenever the ball hits a brick.
@@ -217,11 +251,20 @@ export default class Level extends Phaser.Scene {
           this.brickDestroyedSound.play()
           this.score += brick.getData('points')
           this.scoreBoard.setText(`SCORE:${this.score}`)
+
           // if powerup needs to fall, spawn powerup
           this.bricksToNextPowerUp--
+          console.log(this.bricksToNextPowerUp);
           if (this.bricksToNextPowerUp === 0) {
-            this.bricksToNextPowerUp = Phaser.Math.Between(6, 10)
+            this.bricksToNextPowerUp = Phaser.Math.Between(10, 15)
+
             // Drop Powerup
+            const oneUpSprite = this.physics.add.sprite(brick.x, brick.y, 'anim1up')
+            this.powerUps.add(oneUpSprite)
+            console.log('this.powerUps children:');
+            console.log(this.powerUps.getChildren())
+            oneUpSprite.setVelocityY(100)
+            oneUpSprite.play({ key: "fallDown", repeat: -1 })
           }
         } else {
           let vitality = brick.getData('vitality')
@@ -266,15 +309,26 @@ export default class Level extends Phaser.Scene {
       }
     }
 
+    /**
+     * 
+     * @param {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} powerUp 
+     */
+    this.destroyPowerUp = (powerUp, killZone) => {
+      powerUp.destroy()
+      console.log('A powerup fell and I destroyed it!');
+    }
+
     this.physics.add.collider(this.ball, this.paddle, this.hitPaddle, null, this)
     this.physics.add.collider(this.ball, topBorder)
     this.physics.add.collider(this.ball, leftBorder)
     this.physics.add.collider(this.ball, rightBorder)
+    this.physics.add.collider(this.powerUps, this.powerUpKillZone, this.destroyPowerUp, null, this)
+    this.physics.add.collider(this.paddle, this.powerUps, this.hitPowerUp, null, this)
 
     this.scoreBoard = this.add.bitmapText(2, 2, 'ibm_vga', "PRESS UP TO LAUNCH", 8)
     this.currentLevelBoard = this.add.bitmapText(
       this.cameras.main.width,
-      10,
+      11,
       'ibm_vga',
       `${this.currentLevelNumber}/3`
     ).setOrigin(1)
@@ -290,6 +344,9 @@ export default class Level extends Phaser.Scene {
         this.previousBallVelocityY = this.ball.body.velocity.y
 
         this.ball.setVelocity(0)
+        this.powerUps.getChildren().forEach((powerUp) => {
+          powerUp.setVelocity(0)
+        })
         this.previousText = this.scoreBoard.text
         this.scoreBoard.setText("PAUSED")
         this.gameState = this.states.PAUSED
@@ -297,6 +354,9 @@ export default class Level extends Phaser.Scene {
         this.gameState = this.previousGameState
         this.scoreBoard.setText(this.previousText)
         this.ball.setVelocity(this.previousBallVelocityX, this.previousBallVelocityY)
+        this.powerUps.getChildren().forEach((powerUp) => {
+          powerUp.setVelocityY(100)
+        })
       }
     })
   }

@@ -18,7 +18,7 @@ const config = {
   physics: {
     default: 'arcade',
     arcade: {
-      debug: false
+      debug: true
     }
   },
   title: 'Breakoid: Between Worlds',
@@ -39,4 +39,4 @@ game.scene.add('Cutscene_1', Cutscene_1)
 
 game.scene.add('GameOver', GameOver)
 
-game.scene.start('Intro')
+game.scene.start('Level_1')
