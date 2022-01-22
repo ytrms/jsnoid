@@ -14,11 +14,11 @@ const config = {
   height: 256,
   zoom: 2,
   type: Phaser.AUTO,
-  banner: { text: 'white', background: ['#847e87', '#696a6a', '#595652', '#222034', '#000000'] },
+  banner: {text: 'white', background: ['#847e87', '#696a6a', '#595652', '#222034', '#000000']},
   physics: {
     default: 'arcade',
     arcade: {
-      debug: true
+      debug: false
     }
   },
   title: 'Breakoid: Between Worlds',
@@ -39,4 +39,4 @@ game.scene.add('Cutscene_1', Cutscene_1)
 
 game.scene.add('GameOver', GameOver)
 
-game.scene.start('Level_1')
+game.scene.start('Intro')

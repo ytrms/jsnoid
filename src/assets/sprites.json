@@ -1,7 +1,7 @@
 {"frames": [
 
 {
-	"filename": "ball.png",
+	"filename": "ball-lv2.png",
 	"frame": {"x":0,"y":0,"w":5,"h":4},
 	"rotated": false,
 	"trimmed": false,
@@ -9,16 +9,48 @@
 	"sourceSize": {"w":5,"h":4}
 },
 {
-	"filename": "bg-lv1.png",
-	"frame": {"x":59,"y":8,"w":32,"h":32},
+	"filename": "ball.png",
+	"frame": {"x":5,"y":0,"w":5,"h":4},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":5,"h":4},
+	"sourceSize": {"w":5,"h":4}
+},
+{
+	"filename": "bg-fallback.png",
+	"frame": {"x":27,"y":24,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32}
 },
 {
+	"filename": "bg-lv1.png",
+	"frame": {"x":59,"y":24,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+{
+	"filename": "bg-lv2-big.png",
+	"frame": {"x":187,"y":24,"w":48,"h":48},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":48},
+	"sourceSize": {"w":48,"h":48}
+},
+{
+	"filename": "bg-lv2-four.png",
+	"frame": {"x":0,"y":72,"w":64,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":64,"h":64},
+	"sourceSize": {"w":64,"h":64}
+},
+{
 	"filename": "bg-lv2.png",
-	"frame": {"x":91,"y":8,"w":32,"h":32},
+	"frame": {"x":91,"y":24,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -26,15 +58,7 @@
 },
 {
 	"filename": "bg-lv3.png",
-	"frame": {"x":123,"y":8,"w":32,"h":32},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-	"sourceSize": {"w":32,"h":32}
-},
-{
-	"filename": "bg-lv4.png",
-	"frame": {"x":155,"y":8,"w":32,"h":32},
+	"frame": {"x":123,"y":24,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -42,7 +66,7 @@
 },
 {
 	"filename": "brickBlue.png",
-	"frame": {"x":35,"y":0,"w":16,"h":8},
+	"frame": {"x":40,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
@@ -50,7 +74,7 @@
 },
 {
 	"filename": "brickBrown.png",
-	"frame": {"x":51,"y":0,"w":16,"h":8},
+	"frame": {"x":56,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
@@ -58,7 +82,7 @@
 },
 {
 	"filename": "brickGold.png",
-	"frame": {"x":67,"y":0,"w":16,"h":8},
+	"frame": {"x":72,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
@@ -66,7 +90,7 @@
 },
 {
 	"filename": "brickGreen.png",
-	"frame": {"x":83,"y":0,"w":16,"h":8},
+	"frame": {"x":88,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
@@ -74,7 +98,7 @@
 },
 {
 	"filename": "brickOrange.png",
-	"frame": {"x":99,"y":0,"w":16,"h":8},
+	"frame": {"x":104,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
@@ -82,7 +106,7 @@
 },
 {
 	"filename": "brickPink.png",
-	"frame": {"x":115,"y":0,"w":16,"h":8},
+	"frame": {"x":120,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
@@ -90,7 +114,7 @@
 },
 {
 	"filename": "brickRed.png",
-	"frame": {"x":131,"y":0,"w":16,"h":8},
+	"frame": {"x":136,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
@@ -98,7 +122,7 @@
 },
 {
 	"filename": "brickSilver.png",
-	"frame": {"x":147,"y":0,"w":16,"h":8},
+	"frame": {"x":152,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
@@ -106,7 +130,7 @@
 },
 {
 	"filename": "brickSilverCracked.png",
-	"frame": {"x":163,"y":0,"w":16,"h":8},
+	"frame": {"x":168,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
@@ -114,7 +138,7 @@
 },
 {
 	"filename": "brickWhite.png",
-	"frame": {"x":179,"y":0,"w":16,"h":8},
+	"frame": {"x":184,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
@@ -122,7 +146,7 @@
 },
 {
 	"filename": "brickYellow.png",
-	"frame": {"x":195,"y":0,"w":16,"h":8},
+	"frame": {"x":200,"y":0,"w":16,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":8},
@@ -130,7 +154,7 @@
 },
 {
 	"filename": "guy.png",
-	"frame": {"x":187,"y":8,"w":32,"h":32},
+	"frame": {"x":155,"y":24,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -138,7 +162,7 @@
 },
 {
 	"filename": "left-border.png",
-	"frame": {"x":0,"y":48,"w":8,"h":240},
+	"frame": {"x":200,"y":72,"w":8,"h":240},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":240},
@@ -146,7 +170,7 @@
 },
 {
 	"filename": "lifeIndicator.png",
-	"frame": {"x":5,"y":0,"w":15,"h":5},
+	"frame": {"x":10,"y":0,"w":15,"h":5},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":5},
@@ -154,7 +178,7 @@
 },
 {
 	"filename": "lifeIndicatorShadow.png",
-	"frame": {"x":20,"y":0,"w":15,"h":5},
+	"frame": {"x":25,"y":0,"w":15,"h":5},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":5},
@@ -162,7 +186,7 @@
 },
 {
 	"filename": "logo.png",
-	"frame": {"x":32,"y":8,"w":27,"h":24},
+	"frame": {"x":0,"y":24,"w":27,"h":24},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":27,"h":24},
@@ -178,7 +202,7 @@
 },
 {
 	"filename": "titleCard.png",
-	"frame": {"x":8,"y":48,"w":136,"h":128},
+	"frame": {"x":64,"y":72,"w":136,"h":128},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":136,"h":128},
@@ -186,7 +210,7 @@
 },
 {
 	"filename": "top-border.png",
-	"frame": {"x":0,"y":40,"w":224,"h":8},
+	"frame": {"x":0,"y":16,"w":224,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":224,"h":8},
@@ -197,8 +221,8 @@
 	"version": "1.0",
 	"image": "sprites.png",
 	"format": "RGBA8888",
-	"size": {"w":224,"h":288},
+	"size": {"w":235,"h":312},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:c5a74d3ce65813098d10250c8a04ece9:d8bc2ca8055cac64a240e8885722b415:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:89b6ab249015a46ec84f08f8d04f9741:03b65690695703ff9b3b87d97d6de399:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

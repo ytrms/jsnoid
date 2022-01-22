@@ -24,7 +24,7 @@ export default class Level extends Phaser.Scene {
     this.load.audio("gameWinSound", gameWinSound)
     this.load.audio("levelWinSound", levelWinSound)
     this.load.audio("gameLoseSound", gameLoseSound)
-    this.load.spritesheet("anim1up", anim1upPNG, { frameWidth: 16, frameHeight: 8 })
+    this.load.spritesheet("anim1up", anim1upPNG, {frameWidth: 16, frameHeight: 8})
   }
 
   create() {
@@ -41,13 +41,17 @@ export default class Level extends Phaser.Scene {
     this.bricksToNextPowerUp = Phaser.Math.Between(10, 15)
 
     // add audio files
-    this.brickDestroyedSound = this.sound.add("brickDestroyedSound", { loop: false })
-    this.brickHitSound = this.sound.add("brickHitSound", { loop: false })
-    this.paddleHitSound = this.sound.add("paddleHitSound", { loop: false })
-    this.ballLostSound = this.sound.add("ballLostSound", { loop: false })
-    this.gameWinSound = this.sound.add("gameWinSound", { loop: false })
-    this.levelWinSound = this.sound.add("levelWinSound", { loop: false })
-    this.gameLoseSound = this.sound.add("gameLoseSound", { loop: false })
+    this.brickDestroyedSound = this.sound.add("brickDestroyedSound", {loop: false})
+    this.brickHitSound = this.sound.add("brickHitSound", {loop: false})
+    this.paddleHitSound = this.sound.add("paddleHitSound", {loop: false})
+    this.ballLostSound = this.sound.add("ballLostSound", {loop: false})
+    this.gameWinSound = this.sound.add("gameWinSound", {loop: false})
+    this.levelWinSound = this.sound.add("levelWinSound", {loop: false})
+    this.gameLoseSound = this.sound.add("gameLoseSound", {loop: false})
+
+    if (!this.bgTileFrame) {
+      this.bgTileFrame = 'bg-fallback.png'
+    }
 
     // set background
     this.bgtile = this.add.tileSprite(
@@ -59,9 +63,9 @@ export default class Level extends Phaser.Scene {
       this.bgTileFrame)
 
     //G's policeman
-    // if (this.currentLevelNumber === 1) {
-    //   this.add.image(138, 110, 'assets', 'guy.png')
-    // }
+    if (this.currentLevelNumber === 1) {
+      this.add.image(138, 110, 'assets', 'guy.png')
+    }
 
     // create shadows
     this.paddleShadow = this.add.image(
@@ -152,7 +156,7 @@ export default class Level extends Phaser.Scene {
         key: 'assets',
         frame: 'lifeIndicatorShadow.png',
         quantity: counter,
-        gridAlign: { height: 1, cellWidth: 16, cellHeight: 5, x: 18, y: 251 }
+        gridAlign: {height: 1, cellWidth: 16, cellHeight: 5, x: 18, y: 251}
       })
 
       /** @type Phaser.GameObjects.Group */
@@ -160,7 +164,7 @@ export default class Level extends Phaser.Scene {
         key: 'assets',
         frame: "lifeIndicator.png",
         quantity: counter,
-        gridAlign: { height: 1, cellWidth: 16, cellHeight: 5, x: 17, y: 248 }
+        gridAlign: {height: 1, cellWidth: 16, cellHeight: 5, x: 17, y: 248}
       })
 
     }
@@ -182,33 +186,26 @@ export default class Level extends Phaser.Scene {
       'paddle.png')
 
     // create ball
+    if (!this.ballTexture) {
+      this.ballTexture = 'ball.png'
+    }
+
     this.ball = this.physics.add.image(
       this.paddle.x,
       this.paddle.y - 30,
       'assets',
-      'ball.png')
+      this.ballTexture)
       .setBounce(1)
 
     // Game routines
-    // CURRENTLY UNUSED
-    this.resetLevel = function () {
-      this.gameState = this.states.WAITING
-      this.score = 0
-      this.scoreBoard.setText(`PRESS UP TO LAUNCH.`)
-      this.yellowBricks.children.each(brick => {
-        brick.enableBody(false, 0, 0, true, true)
-      })
-    }
-
     /**
      * Runs whenever a life needs to be deducted.
      */
     this.lifeLostRoutine = () => {
-      console.log('powerUps', this.powerUps.getChildren())
       this.gameState = this.states.WAITING
       this.extraShips--
       if (this.extraShips < 0) {
-        this.scene.start('GameOver', { score: this.score, status: "LOST" })
+        this.scene.start('GameOver', {score: this.score, status: "LOST"})
         return
       }
       this.updateExtraShips(this.extraShips)
@@ -227,8 +224,8 @@ export default class Level extends Phaser.Scene {
     }
 
     /**
-     * 
-     * @param {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} powerUp 
+     *
+     * @param {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} powerUp
      */
     this.hitPowerUp = (paddle, powerUp) => {
       this.addShip()
@@ -263,8 +260,8 @@ export default class Level extends Phaser.Scene {
             this.powerUps.add(oneUpSprite)
             console.log('this.powerUps children:');
             console.log(this.powerUps.getChildren())
-            oneUpSprite.setVelocityY(100)
-            oneUpSprite.play({ key: "fallDown", repeat: -1 })
+            oneUpSprite.setVelocityY(150)
+            oneUpSprite.play({key: "fallDown", repeat: -1})
           }
         } else {
           let vitality = brick.getData('vitality')
@@ -288,7 +285,7 @@ export default class Level extends Phaser.Scene {
 
       if (this.destructibleBricks.countActive() === 0) {
         // this.levelWinSound.play()
-        this.scene.start(this.nextLevel, { score: this.score, status: "WON", extraShips: this.extraShips })
+        this.scene.start(this.nextLevel, {score: this.score, status: "WON", extraShips: this.extraShips})
       }
     }
 
@@ -310,8 +307,8 @@ export default class Level extends Phaser.Scene {
     }
 
     /**
-     * 
-     * @param {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} powerUp 
+     *
+     * @param {Phaser.Types.Physics.Arcade.SpriteWithDynamicBody} powerUp
      */
     this.destroyPowerUp = (powerUp, killZone) => {
       powerUp.destroy()
@@ -379,11 +376,11 @@ export default class Level extends Phaser.Scene {
         }
       }
       // release ball when player presses up
-      if (this.gameState === this.states.WAITING && this.cursors.up.isDown && this.ball.getData('isReady')) {
+      if (this.gameState === this.states.WAITING && (this.cursors.up.isDown) && this.ball.getData('isReady')) {
         this.scoreBoard.setText(`SCORE:${this.score}`)
         this.gameState = this.states.PLAYING
         this.ball.setVelocity(60, -200)
-        this.ball.setData({ isReady: false })
+        this.ball.setData({isReady: false})
       }
     }
 
@@ -392,7 +389,7 @@ export default class Level extends Phaser.Scene {
       this.ball.x = this.paddle.x
       this.ball.y = this.paddle.y - this.ball.height * 2
       this.ball.setVelocity(0, 0)
-      this.ball.setData({ isReady: true })
+      this.ball.setData({isReady: true})
     }
 
 
