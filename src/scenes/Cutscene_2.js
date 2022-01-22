@@ -3,26 +3,35 @@ import fontpng from './../assets/IBM_VGA_9x8_0.png'
 import fontxml from './../assets/IBM_VGA_9x8.xml'
 import assetsPNG from './../assets/sprites.png'
 import assetsJSON from '../assets/sprites.json'
-import cutsceneBG from '../../cutscene_bg_1.png'
-import cutsceneBGM from '../assets/cutscene1BGM.mp3'
+import cutsceneBG from '../../cutscene_bg_2.png'
+import cutsceneBGM from '../assets/cutscene2BGM.wav'
 import astroAnim from './../assets/animSheets/astroAnim.png'
 
 export default class Intro extends Phaser.Scene {
   preload() {
     this.load.bitmapFont('ibm_vga', fontpng, fontxml)
     this.load.image('cutsceneBG', cutsceneBG)
-    this.load.audio('cutscene1BGM', cutsceneBGM)
+    this.load.audio('cutsceneBGM', cutsceneBGM)
     this.load.spritesheet("astroAnim", astroAnim, { frameWidth: 103, frameHeight: 85 })
   }
 
   create() {
-    this.cutsceneBGM = this.sound.add("cutscene1BGM", { loop: true, volume: 0.5 })
+    this.cutsceneBGM = this.sound.add("cutsceneBGM", { loop: true, volume: 0.75 })
     this.cutsceneBGM.play()
     this.add.image(0, 0, 'cutsceneBG').setOrigin(0)
 
+    this.astroAnim = this.anims.create({
+      key: 'bob',
+      frames: this.anims.generateFrameNumbers('astroAnim'),
+      frameRate: 5
+    })
+
+    const astroImage = this.physics.add.sprite(this.cameras.main.centerX, 90, 'astroAnim')
+    astroImage.play({ key: "bob", repeat: -1 })
+
     this.input.keyboard.on('keydown-SPACE', () => {
       this.cutsceneBGM.stop()
-      this.scene.start('Level_2')
+      this.scene.start('Level_3')
     })
 
     /**
@@ -45,7 +54,7 @@ export default class Intro extends Phaser.Scene {
     this.dialogBox = this.add.rectangle(this.cameras.main.centerX, 200, this.cameras.main.width - 20, 100, 0x000000, 1)
     this.storyText = this.add.bitmapText(15, 155, 'ibm_vga', '', 8)
     this.typewriteText(
-      "Finally, out of that\nstinking dungeon cell!\n\nGood to have my portal\ngun back. I hope the\nGonderians didn't mess\nwith it...\n\nNow, let's go home.\n(PRESS SPACE)"
+      "God, I'm still on this\nstinking planet!\n\nThe Gonderians messed\nup my gun... \nI'll try to fix it\nand teleport again. \n\nNext, please be home.\n(PRESS SPACE)"
     )
   }
 }
