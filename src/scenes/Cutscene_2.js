@@ -4,7 +4,7 @@ import fontxml from './../assets/IBM_VGA_9x8.xml'
 import assetsPNG from './../assets/sprites.png'
 import assetsJSON from '../assets/sprites.json'
 import cutsceneBG from '../../cutscene_bg_2.png'
-import cutsceneBGM from '../assets/cutscene2BGM.wav'
+import cutsceneBGM from '../assets/cutscene2BGM.mp3'
 import astroAnim from './../assets/animSheets/astroAnim.png'
 
 export default class Intro extends Phaser.Scene {
